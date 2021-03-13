@@ -1,0 +1,275 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;700&display=swap");
+// variables
+$fontFamily: "Poppins", sans-serif;
+$fontSize: 16px;
+$white: #ffffff;
+$gray: #b7b7b7;
+$lightgray: #dbdbdb;
+$black: #000000;
+$lightblue: #00c2cf;
+$py: 100px 0;
+$transition: 0.4s ease;
+// mixins
+@mixin flex($justify, $align, $direction: row) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: $justify;
+    align-items: $align;
+    flex-direction: $direction;
+}
+@mixin btn {
+    border: 2px solid $gray;
+    background: transparent;
+    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: 300;
+    padding: 20px 40px;
+    cursor: pointer;
+    transition: $transition;
+    &:hover {
+        background: $lightblue;
+        border: 2px solid $lightblue;
+    }
+}
+// extend
+.bgBasic {
+    background: linear-gradient(rgba(black, 0.4), rgba(black, 0.4)), url("img/header.jpg");
+    background-size: cover;
+    background-position: center;
+}
+// reset
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+    font-size: inherit;
+}
+ul {
+    list-style: none;
+}
+body {
+    font-family: $fontFamily;
+    font-size: $fontSize;
+    color: $black;
+    background: $lightgray;
+    line-height: 1;
+}
+hr {
+    border: none;
+    background: $lightgray;
+    height: 1px;
+    width: 480px;
+}
+h2 {
+    font-weight: 400;
+}
+h5 {
+    font-weight: 300;
+    color: $gray;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-weight: 400;
+}
+.container {
+    margin: 0 auto;
+    width: 80%;
+    @media (max-width: 767px) {
+        width: 95%;
+    }
+}
+// header
+header {
+    height: 80vh;
+    @extend .bgBasic;
+    @include flex(center, center, column);
+    color: $white;
+    @media (max-width: 767px) {
+        height: 100vh;
+        padding: 20px;
+        text-align: center;
+    }
+    h4 {
+        font-weight: 400;
+        text-transform: uppercase;
+        font-size: 1.3rem;
+        color: $lightgray;
+    }
+    h1 {
+        font-size: 10rem;
+        font-weight: 300;
+        @media (max-width: 767px) {
+            font-size: 5rem;
+        }
+    }
+    hr {
+        margin: 50px auto;
+        @media (max-width: 767px) {
+            margin: 30px auto;
+            width: 40%;
+        }
+    }
+}
+// blog
+.blog {
+    padding: $py;
+    @include flex(space-between, center);
+    @media (max-width: 767px) {
+        padding: 20px 0;
+        flex-direction: column;
+    }
+    article {
+        flex: 0 0 48%;
+        text-align: center;
+        @media (max-width: 767px) {
+            margin-bottom: 30px;
+        }
+        img {
+            width: 100%;
+            display: block;
+        }
+        div {
+            background: $white;
+            padding: 50px;
+        }
+
+        hr {
+            margin: 20px auto;
+            width: 200px;
+        }
+        h2 {
+            font-weight: 300;
+            font-size: 2rem;
+        }
+        p {
+            margin: 20px auto;
+            color: $gray;
+            font-weight: 400;
+            line-height: 1.7;
+        }
+        button {
+            @include btn;
+        }
+    }
+}
+// break
+.break {
+    @extend .bgBasic;
+    padding: $py;
+    article {
+        text-align: center;
+        h5 {
+            color: $white;
+        }
+        hr {
+            margin: 20px auto;
+            width: 45%;
+        }
+        h3 {
+            color: $white;
+            font-weight: 300;
+            font-size: 2rem;
+        }
+    }
+}
+
+// gallery
+.gallery {
+    padding: $py;
+    text-align: center;
+    @media (max-width: 767px) {
+        padding: 20px 0;
+    }
+    h5 {
+        color: $black;
+        font-weight: 300;
+    }
+    h2 {
+        font-weight: 300;
+        font-size: 2rem;
+        margin-top: 50px;
+    }
+    article {
+        @include flex(space-between, center);
+        margin-top: 100px;
+        @media (max-width: 767px) {
+            margin-top: 50px;
+            flex-direction: column;
+        }
+        & > div {
+            flex: 0 0 48%;
+            padding: 10px;
+            margin-bottom: 50px;
+            background: $white;
+            position: relative;
+            cursor: pointer;
+            &:hover div {
+                transform: scale(1);
+                transform-origin: center;
+            }
+            img {
+                width: 100%;
+                object-fit: cover;
+            }
+            div {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                @include flex(center, center);
+                background: rgba($black, 0.8);
+                transform: scale(0);
+                transition: transform $transition;
+
+                h5 {
+                    color: $white;
+                }
+            }
+        }
+    }
+}
+// footer
+footer {
+    @extend .bgBasic;
+    padding: $py;
+    text-align: center;
+    color: $white;
+    @media (max-width: 767px) {
+        padding: 30px 0;
+    }
+    h3 {
+        font-weight: 400;
+    }
+    h2 {
+        font-weight: 700;
+        font-size: 4.5rem;
+        color: $lightblue;
+        margin: 20px auto;
+    }
+    i {
+        font-size: 1.5rem;
+        margin: 0 10px;
+        transition: $transition;
+        cursor: pointer;
+        &:hover {
+            color: $lightblue;
+        }
+    }
+    p {
+        margin: 20px 0 0 0;
+        font-size: 1.1rem;
+        a {
+            color: $lightblue;
+            transition: $transition;
+            cursor: pointer;
+            &:hover {
+                color: $white;
+            }
+        }
+    }
+}
